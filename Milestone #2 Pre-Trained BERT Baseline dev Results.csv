@@ -1,0 +1,2 @@
+dev_loss,dev_model_preparation_time,dev_accuracy,dev_pos_precision,dev_pos_recall,dev_pos_f1,dev_neg_precision,dev_neg_recall,dev_neg_f1,dev_f1_macro,dev_f1_micro,dev_f1_weighted,dev_runtime,dev_samples_per_second,dev_steps_per_second
+0.7364638447761536,0.001,0.4507803121248499,0.7096774193548387,0.015878744135691087,0.03106247793858101,0.4475283630470016,0.9919173776380781,0.6167806784866676,0.3239215782126243,0.4507803121248499,0.2920457577746332,68.8102,72.635,2.282
