@@ -1,9 +1,13 @@
+## Ensure TensorFlow is not used
+import os
+os.environ["USE_TF"] = "0"
+
 # Import necessary software
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models as tv_models
-from transformers import CLIPModel, BertModel, BertTokenizer, CLIPProcessor
+from transformers import CLIPModel, BertModel, BertTokenizer, CLIPProcessor, CLIPTokenizer
 
 # Projection Head: 2-layer MLP (Reference: Page 4, Figure 2 of Paper)
 class ProjectionHead(nn.Module):
@@ -153,13 +157,48 @@ class FND_CLIP(nn.Module):
 
         # 3. Setup Multimodal (Text + Image) Encoder
         self.multimodal_encoder = CLIPModel.from_pretrained(clip_model_name)
-        self.multimodal_encoder_processor = CLIPProcessor.from_pretrained(clip_model_name)
+        self.multimodal_encoder_tokenizer = CLIPTokenizer.from_pretrained(clip_model_name)
 
-    def forward(self):
-        pass
+    # txt(B, ), List of Text Strings
+    # img(B, C_in = 3, H_in = 224, W_in = 224), List of Corresponding Imagess
+    def forward(self, txt, img):
+        # Compute ResNet Image Features
+        image_features = self.image_encoder(img) # Output Shape: (B, 2048)
+        print(f"Shape of Image Features: {image_features.shape}")
+
+        # Compute BERT Text Features
+        encoding = self.text_encoder_tokenizer(
+            txt,
+            padding=True,
+            truncation=True,
+            return_tensors="pt"
+        ) # Tokenize text
+
+        text_outputs = self.text_encoder(**encoding) # Compute BERT Output
+        text_features = text_outputs.last_hidden_state[:, 0, :] # Use [CLS] token as text feature
+        print(f"Shape of Text Features: {text_features.shape}") # Output Shape: (B, 768)
+
+        # Compute CLIP Text and Image Features
+        encoding = self.multimodal_encoder_tokenizer(
+            txt,
+            padding=True,
+            truncation=True,
+            return_tensors="pt"
+        ).to(img.device) # Tokenize text
+
+        multimodal_image_features = self.multimodal_encoder.get_image_features(img) # Compute Image Features
+        multimodal_text_features = self.multimodal_encoder.get_text_features(**encoding) # Compute Text Features
+        print(f"Shape of Multimodal Image Features: {multimodal_image_features.shape}") # Output Shape: (B, 512)
+        print(f"Shape of Multimodal Text Features: {multimodal_text_features.shape}") # Output Shape: (B, 512)
 
 # Run Smoke Tests
 if __name__ == "__main__":
     # Instantiate Model
     model = FND_CLIP()
     model.eval()
+
+    # Sample forward pass
+    B = 2
+    text_samples = ["a", "b"]
+    image_samples = torch.randn(B, 3, 224, 224)
+    model(text_samples, image_samples)
