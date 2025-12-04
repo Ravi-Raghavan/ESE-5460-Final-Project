@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import models as tv_models
-from transformers import CLIPModel, BertModel
+from transformers import CLIPModel, BertModel, BertTokenizer, CLIPProcessor
 
 # Projection Head: 2-layer MLP (Reference: Page 4, Figure 2 of Paper)
 class ProjectionHead(nn.Module):
@@ -137,7 +137,23 @@ class FND_CLIP(nn.Module):
         classifier_hidden=256,
         dropout=0.2
     ):
-        super().__init__()       
+        super().__init__()   
+
+        # Sanity Check
+        assert resnet_model_name == "resnet101"
+
+        # 1. Setup ResNet Image Encoder
+        # Replace the final fully connected layer with Identity because we only need the ResNet feature embeddings.
+        self.image_encoder = tv_models.resnet101(weights='IMAGENET1K_V1')
+        self.image_encoder.fc = nn.Identity()
+
+        # 2. Setup BERT Text Encoder
+        self.text_encoder = BertModel.from_pretrained(bert_model_name)
+        self.text_encoder_tokenizer = BertTokenizer.from_pretrained(bert_model_name)
+
+        # 3. Setup Multimodal (Text + Image) Encoder
+        self.multimodal_encoder = CLIPModel.from_pretrained(clip_model_name)
+        self.multimodal_encoder_processor = CLIPProcessor.from_pretrained(clip_model_name)
 
     def forward(self):
         pass
