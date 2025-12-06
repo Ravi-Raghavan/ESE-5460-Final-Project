@@ -8,3 +8,6 @@ test_images*
 
 # Keep BERT Checkpoints Locally
 Milestone2-*/
+
+# Keep CLIP checkpoints locally
+Milestone #4
