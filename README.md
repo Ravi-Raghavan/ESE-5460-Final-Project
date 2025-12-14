@@ -1,3 +1,5 @@
+# ESE 5460: Principles of Deep Learning Final Project
+
 ## Files Overview
 
 - **Milestone #1.ipynb**  
