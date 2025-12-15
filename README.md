@@ -9,7 +9,6 @@ This repository contains our implementation of multimodal misinformation detecti
 - Dhruv Verma (vdhruv@seas.upenn.edu)  
 - Raafae Zaki (rzaki2@seas.upenn.edu)  
 
-
 ## Dataset
 We use the **Fakeddit** dataset, which provides labeled image–text pairs for fine-grained fake news classification.
 
@@ -17,9 +16,22 @@ We use the **Fakeddit** dataset, which provides labeled image–text pairs for f
 - Images: associated social media images  
 - Labels: misinformation categories  
 
-Dataset details and preprocessing follow the setup described in *r/Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection*.
+> **Note to Instructor:** Dataset details follow the setup described in *r/Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection*
 
-> **Note:** Due to size constraints, the dataset is not included in this repository.
+> **Note to Instructor:** Due to size constraints, the dataset is not included in this repository.
+
+## Dataset Preprocessing
+Following the instructions from the [r/Fakeddit paper](https://arxiv.org/pdf/1911.03854), we obtained the dataset from the official [Fakeddit GitHub repository](https://github.com/entitize/fakeddit).  
+
+The repository provides a link to the dataset’s [Google Drive Folder](https://drive.google.com/drive/folders/1jU7qgDqU1je9Y0PMKJ_f31yXRo5uWGFm?usp=sharing)
+
+Since our project focuses on **multimodal analysis**, we use only the multimodal samples, which contain **both text and images**.
+
+Specifically, we downloaded the following files from the above Google Drive Link
+- `multimodal_train.tsv`  
+- `multimodal_validate.tsv`  
+- `multimodal_test_public.tsv`  
+
 
 
 ## Models Implemented
