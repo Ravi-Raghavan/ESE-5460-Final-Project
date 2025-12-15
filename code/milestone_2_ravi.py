@@ -29,7 +29,7 @@ cleaned_data/
 ## Environment Setup
 """
 
-!pip install evaluate
+# !pip install evaluate
 
 # Import Libraries
 import pandas as pd
