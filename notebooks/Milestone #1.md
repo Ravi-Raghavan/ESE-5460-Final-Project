@@ -1,5 +1,5 @@
 ## Load Data & Setup Dataloaders
-This section loads the multimodal dataset and prepares it for model evaluation by defining a custom PyTorch `Dataset` and wrapping it in a `DataLoader`. The dataset is responsible for reading image files from disk, applying the specified image transformations (resizing, tensor conversion, and normalization), and pairing each image with its corresponding text input and label. This ensures that every sample passed to the model contains aligned image–text data in the expected format.
+This section loads the multimodal dataset and prepares it for model evaluation by defining a custom PyTorch `Dataset` and wrapping it in a `DataLoader`. The dataset is responsible for reading image files from disk, applying the specified image transformations (resizing, tensor conversion, and normalization), and pairing each image with its corresponding text input and label. This ensures that every sample passed to the model contains aligned image-text data in the expected format.
 
 The DataLoader handles batching and efficient iteration over the dataset during inference. Shuffling is disabled to preserve a consistent sample order, which is important for reproducible analysis and for correctly mapping predictions and attention outputs back to specific input samples when generating visualizations later in the script.
 
