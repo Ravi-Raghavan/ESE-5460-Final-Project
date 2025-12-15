@@ -1,4 +1,4 @@
-# FND CLIP Model with QKV Attention – Training and Evaluation
+# Milestone 4: FND CLIP Model with QKV Attention – Training and Evaluation
 
 ## Environment Setup
 This section defines global configuration parameters such as batch size, image resolution, and attention head count, and sets up the runtime device (CPU, CUDA, or Apple MPS). It also establishes file paths for the cleaned datasets and ensures consistent execution settings across environments.
