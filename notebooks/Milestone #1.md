@@ -1,3 +1,30 @@
+# Milestone #1: Data Preparation + Exploratory Data Analysis
+
+## Dataset Access
+
+Following the instructions from the [r/Fakeddit paper](https://arxiv.org/pdf/1911.03854), we obtained the dataset from the official [Fakeddit GitHub repository](https://github.com/entitize/fakeddit).  
+The repository provides a link to the dataset’s Google Drive folder:  
+<https://drive.google.com/drive/folders/1jU7qgDqU1je9Y0PMKJ_f31yXRo5uWGFm?usp=sharing>
+
+Since our project focuses on **multimodal analysis**, we use only the multimodal samples, which contain **both text and images**.
+
+## Script Instructions
+
+To run this script, please download the following data files from the Google Drive link provided above:
+
+- `multimodal_test_public.tsv`  
+- `multimodal_train.tsv`  
+- `multimodal_validate.tsv`  
+
+Then, organize your local directory as follows:
+
+```text
+data/
+├── multimodal_test_public.tsv
+├── multimodal_train.tsv
+└── multimodal_validate.tsv
+```
+
 ## Environment Setup
 This section establishes the overall configuration required for the data processing pipeline. It defines the directory structure used to store raw and processed data, specifies file paths for the training, validation, and test splits, and sets a fixed random seed to ensure reproducibility. By centralizing these settings at the top of the script, the pipeline remains consistent and easy to modify.
 
