@@ -1,4 +1,4 @@
-# Analysis of BERT Results: Milestone #2
+# Milestone 2: BERT Fine-tuning - Analysis
 
 ## Training and Validation Loss Analysis
 This section analyzes the training dynamics of the fine-tuned BERT model by extracting loss values recorded during training and evaluation. The script loads the `trainer_state.json` file produced by the Hugging Face Trainer, which contains a detailed log of training and validation metrics at different optimization steps.
