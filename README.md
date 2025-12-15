@@ -1,4 +1,4 @@
-# Multimodal Misinformation Detection [Project ID: 63]
+# Multimodal Misinformation Detection on Social Media [Project ID: 63]
 
 **ESE 5460: Principles of Deep Learning — Final Project**
 
