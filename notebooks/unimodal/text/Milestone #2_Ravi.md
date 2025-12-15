@@ -74,7 +74,7 @@ This section configures the training process by specifying hyperparameters such 
 
 The customized Trainer is then initialized with the model, datasets, training arguments, and metric computation function. This setup defines the full fine-tuning pipeline.
 
-## Fine-Tune Pretrained Model by Freezing BERT and Updating the Classifier
+## Train Pretrained Model by Freezing BERT and Updating the Classifier
 
 In this step, we leverage a pretrained BERT model for feature extraction while keeping its weights frozen. Only the final fully connected (FC) classification layer is updated during training.
 
