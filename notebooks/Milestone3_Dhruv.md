@@ -1,4 +1,4 @@
-# Milestone 3 – Multimodal Fake News Detection with BERT + ResNet101
+# Milestone 3: Multimodal Fake News Detection with BERT and ResNet101
 
 ## Data Loading and Path Configuration
 This section loads the training, validation, and test CSV files containing Reddit post metadata and labels. The code is written for execution in Google Colab, with paths pointing to Google Drive–mounted datasets. Each CSV contains textual content, labels, and indices corresponding to associated images.
