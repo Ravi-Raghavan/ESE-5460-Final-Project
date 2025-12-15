@@ -150,3 +150,21 @@ The above notebook contains the code to plot the training loss curves for the CL
 ## Python Files and Jupyter Notebooks
 
 **Note to Instructor:** For every Jupyter Notebook (`.ipynb`) mentioned above, an equivalent Python script (`.py`) with the same filename is available in the same directory. These Python files were generated directly from the corresponding notebooks using Google Colab.
+
+## Instructions to Run Jupyter Notebooks/Python Scripts
+
+All notebooks and Python scripts **must be run using Google Colab**. Local execution is not supported due to environment and dependency requirements.
+
+### Data Availability
+The processed dataset required for training and evaluation is available in the [`Cleaned Data`](https://drive.google.com/drive/folders/1rj-tiLFvdmUenTQDgonEWqq5ST_-AWC0?usp=drive_link) folder on our Project's Google Drive:
+
+Ensure that this Google Drive folder is accessible from your Colab session.
+
+### Steps to Run
+1. Open the desired notebook in **Google Colab**.
+2. Mount Google Drive:
+   ```python
+   from google.colab import drive
+   drive.mount('/content/drive')
+   ```
+3. Execute Colab Notebook
