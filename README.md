@@ -114,10 +114,35 @@ Before developing our main CLIP-based models, we began by implementing several b
 - This baseline provides a reference for evaluating how much **multimodal fusion** improves performance compared to unimodal models.
 - Source Jupyter Notebook: [`Milestone3_Dhruv.ipynb`](notebooks/multimodal/baseline/Milestone3_Dhruv.ipynb)
 
-
 ### 4. CLIP-Guided Multimodal Model
-- CLIP-based joint text–image representations
-- Fusion guided by CLIP embeddings
-- Ablation Study between different attention mechanisms:
-  - QKV (self-attention)
-  - Modality-aware attention
+- Leveraged **CLIP** [Zhou et al., 2022](https://arxiv.org/pdf/2205.14304) to obtain **joint text–image representations** for each Reddit post, effectively capturing cross-modal semantic relationships.  
+- The multimodal fusion was **guided by CLIP embeddings**, enabling the model to integrate textual and visual information more effectively than simple concatenation.  
+- Performed an **ablation study** to evaluate the impact of different attention mechanisms on multimodal fusion:  
+  - **QKV (self-attention):** applies standard self-attention across all modality embeddings 
+  - **Modality-Wise attention:** explicitly accounts for the modality of each feature, enabling the model to assign different weights to text and image information during fusion.
+- This approach allowed us to evaluate how attention-based fusion strategies impact multimodal misinformation detection performance.
+- Source Code (Modality-Wise Attention): [`Milestone #4_Ravi.ipynb`](notebooks/multimodal/CLIP/Milestone%20%234_Ravi.ipynb)
+- Source Code (QKV Attention): [`Milestone_4_Raafae.ipynb`](notebooks/multimodal/CLIP/Milestone_4_Raafae.ipynb)
+
+### 5. Analysis of CLIP Models
+To better understand the behavior and performance of our CLIP-based models, we performed a series of analyses:  
+
+- **Embedding Similarity Analysis:** Computed and plotted **cosine similarities** between CLIP text and image embeddings for posts in the training dataset, providing insight into how well the model aligns textual and visual information.  
+- **Training Dynamics:** Plotted **training and validation loss curves** for each CLIP-based model to evaluate convergence behavior, overfitting, and generalization across different attention mechanisms.  
+- **Attention Visualization:**  
+  - For the **QKV attention model**, generated **attention heatmaps** to examine how the model distributes attention across text and image features.  
+  - For the **Modality-Wise attention model**, visualized the **modality-specific attention weights**, highlighting how the model balances the contribution of text versus image information during prediction.  
+
+These analyses helped us interpret model behavior, identify strengths and limitations of each attention mechanism, and provide qualitative evidence for the effectiveness of CLIP-guided multimodal fusion in misinformation detection.
+
+- Source Jupyter Notebook (contains all analysis plots for CLIP-Model w/ Modality-Wise Attention): [`Milestone #4_Ravi_Analysis.ipynb`](notebooks/multimodal/CLIP/Milestone%20%234_Ravi_Analysis.ipynb)
+
+- Source Jupyter Notebook (contains all analysis plots for CLIP-Model w/ QKV Attention): 
+
+1. [`Milestone #4_Raafae_Analysis.ipynb`](notebooks/multimodal/CLIP/Milestone_4_Raafae_Analysis.ipynb)
+
+The above notebook contains the code to plot the QKV Attention Heatmaps
+
+2. [`Milestone #4_Raafae_Analysis(2).ipynb`](notebooks/multimodal/CLIP/Milestone%20%234_Raafae_Analysis(2).ipynb)
+
+The above notebook contains the code to plot the training loss curves for the CLIP-based model w/QKV Attention
