@@ -29,7 +29,7 @@ cleaned_data/
 ## Environment Setup
 """
 
-# !pip install evaluate
+!pip install evaluate
 
 # Import Libraries
 import pandas as pd
@@ -217,13 +217,13 @@ class SubTrainer(Trainer):
 """## **Initialize the `TrainingArguments` and `Trainer`**"""
 
 training_args = TrainingArguments(
-    output_dir="Milestone2-Baseline-BERT-FineTuning",
+    output_dir="Milestone2-Baseline-BERT-PreTraining",
     per_device_train_batch_size=32,
     per_device_eval_batch_size=32,
     learning_rate=5e-5,
     num_train_epochs=3,
-    save_strategy="steps",      # save checkpoints every N steps
-    save_steps=100,             # save every 100 steps
+    # save_strategy="steps",      # save checkpoints every N steps
+    # save_steps=100,             # save every 100 steps
     eval_strategy="steps",      # evaluate every N steps
     eval_steps=100,             # evaluate every 100 steps
     logging_strategy="steps",
@@ -239,6 +239,23 @@ trainer = SubTrainer(
     eval_dataset=dev_hf_dataset,
     compute_metrics=compute_metrics,
 )
+
+"""# Set Up: Freeze BERT and Update FC Weights"""
+
+# Freeze all BERT parameters except the classification head
+for param in model.bert.parameters():
+  param.requires_grad = False
+
+# Confirm that only classifier is trainable
+for name, param in model.named_parameters():
+  if param.requires_grad:
+    print(name, param.requires_grad)
+
+"""# **Train the Model: `Pre-Training`**"""
+
+trainer.train() # Always Resume from Last Checkpoint to Save Time
+trainer.save_model('Milestone2-Baseline-BERT-FinalModel(PreTrain)') # Save the Final Model
+trainer.save_state() # Save the State of the Trainer (e.g. Losses, etc)
 
 """# **Evaluate Pre-Trained Model on Train, Dev, and Test Datasets**"""
 
@@ -261,6 +278,42 @@ def generate_evaluation_results(split):
 generate_evaluation_results("train")
 generate_evaluation_results("dev")
 generate_evaluation_results("test")
+
+"""## **Initialize the `TrainingArguments` and `Trainer`**"""
+
+training_args = TrainingArguments(
+    output_dir="Milestone2-Baseline-BERT-FineTuning",
+    per_device_train_batch_size=32,
+    per_device_eval_batch_size=32,
+    learning_rate=5e-5,
+    num_train_epochs=3,
+    # save_strategy="steps",      # save checkpoints every N steps
+    # save_steps=100,             # save every 100 steps
+    eval_strategy="steps",      # evaluate every N steps
+    eval_steps=100,             # evaluate every 100 steps
+    logging_strategy="steps",
+    logging_steps=100,          # log every 100 steps
+    report_to="none",
+    full_determinism=True
+)
+
+trainer = SubTrainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_hf_dataset,
+    eval_dataset=dev_hf_dataset,
+    compute_metrics=compute_metrics,
+)
+
+"""# Set Up Model for Fine-Tune"""
+
+# Fine-Tune BERT
+for param in model.bert.parameters():
+  param.requires_grad = True
+
+# Confirm classifier is still trainable
+for name, param in model.classifier.named_parameters():
+    print(name, param.requires_grad)
 
 """# **Train the Model: `Fine-Tuning`**"""
 
