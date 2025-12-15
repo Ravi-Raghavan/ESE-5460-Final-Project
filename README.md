@@ -39,6 +39,8 @@ data/
 └── multimodal_test_public.tsv
 ```
 
+> **Note to Instructor:** We considered the different label schemes provided in the Fakeddit dataset: **`2_way_label`**, **`3_way_label`**, and **`6_way_label`**. Since our primary goal is **binary classification**, we used **`2_way_label`** for all experiments. In our experiments, a label of **0** corresponds to **fake news**, while a label of **1** corresponds to **non-fake news**. The other label schemes (`3_way_label` and `6_way_label`) provide finer-grained categorizations of misinformation, but they were not used in our models to maintain focus on the binary detection task.
+
 ## Data Preprocessing
 
 This section describes the preprocessing steps applied to the multimodal Fakeddit dataset prior to modeling and analysis.
@@ -92,16 +94,19 @@ Source Code Reference:
 - [`ImageCorruptionAnalysis(5k).ipynb`](notebooks/ImageCorruptionAnalysis(5k).ipynb)
 
 ## Models Implemented
+Before developing our main CLIP-based models, we began by implementing several baseline models. The purpose of these baselines was to establish reference performance levels and provide a point of comparison for our more complex multimodal models.
 
 ### 1. Text Unimodal Baseline
-- Pretrained **BERT (bert-base-uncased)**
-- Classification head on top of [CLS] embedding
-- Comparison of pretrained vs. fine-tuned BERT
+- Utilized the pretrained **BERT (bert-base-uncased)** model to encode **only the text portion of each Reddit post**.  
+- Added a **classification head** on top of the [CLS] token embedding to perform binary classification
+- Compared **Pretrained BERT** versus **fully fine-tuned BERT**, allowing us to evaluate the benefits of adapting the language model to our specific fake-news detection task.
+- Source Jupyter Notebook: [`Milestone #2_Ravi.ipynb`](notebooks/unimodal/text/Milestone%20%232_Ravi.ipynb)
 
 ### 2. Image Unimodal Baseline
-- Pretrained **ResNet-101**
-- Image features were taken prior to last FC Layer
-- Comparison of pretrained vs. fine-tuned ResNet
+- Utilized the pretrained **ResNet-101** model to extract visual features from **only the image portion of each Reddit post**.  
+- Features were obtained from the layer immediately **before the final fully connected (FC) classification layer**, capturing high-level image representations.  
+- Conducted experiments comparing **Pretrained ResNet** versus **Fine-tuned ResNet**, allowing us to assess the benefits of adapting the visual model to our specific fake-news detection task.
+- Source Jupyter Notebook: [`Milestone2_Dhruv.ipynb`](notebooks/unimodal/images/Milestone2_Dhruv.ipynb)
 
 ### 3. Multimodal Baseline
 - Concatenation of BERT text embeddings and ResNet image features
@@ -113,4 +118,3 @@ Source Code Reference:
 - Ablation Study between different attention mechanisms:
   - QKV (self-attention)
   - Modality-aware attention
-
