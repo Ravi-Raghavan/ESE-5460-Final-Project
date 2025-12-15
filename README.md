@@ -72,6 +72,25 @@ After crawling the internet for the images and removing samples where image retr
 
 These final splits maintain the original label distributions and ensure that every example contains both textual and visual modalities. The resulting dataset is clean, consistent, and fully multimodal, providing a robust foundation for downstream modeling and experimentation.
 
+## Further Downsampling
+
+To further reduce computational overhead during training, we performed additional downsampling of the validation and test splits. Although the initial subsampled splits contained approximately 33,000 examples each, evaluating the model at frequent checkpoints—every 50–100 weight updates—proved to be prohibitively expensive.  
+
+To address this, we **randomly downsampled the validation and test sets to 5,000 samples each**, while ensuring that the original label distributions were preserved. This stratified downsampling allowed for efficient evaluation without distorting class proportions.  
+
+By reducing the size of these splits, we were able to maintain frequent model checkpointing and monitoring of validation performance, while keeping the training loop tractable. This approach balances evaluation efficiency with representativeness during model development.
+
+Source Code Reference: 
+- [`ValidationTestDownsample.ipynb`](notebooks/ValidationTestDownsample.ipynb)
+
+## Identifying Corrupted Images
+
+After crawling the image URLs, some images could not be opened because they were corrupted. To handle this, we used the notebooks listed below to identify which samples in the dataset were corrupted. In every model we subsequently train, when loading the data, we filter out these corrupted samples to ensure that only valid images are used during training and evaluation.
+
+Source Code Reference: 
+- [`ImageCorruptionAnalysis.ipynb`](notebooks/ImageCorruptionAnalysis.ipynb)
+- [`ImageCorruptionAnalysis(5k).ipynb`](notebooks/ImageCorruptionAnalysis(5k).ipynb)
+
 ## Models Implemented
 
 ### 1. Text Unimodal Baseline
