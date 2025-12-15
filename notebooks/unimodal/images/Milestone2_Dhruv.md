@@ -7,7 +7,7 @@ This section defines file paths for the training, validation, and test CSV files
 Here, a new `image_num` column is created by zero-padding the DataFrame index. This step establishes a deterministic mapping between each row in the CSV files and its corresponding image filename on disk, enabling reliable image retrieval during dataset construction.
 
 ## Filtering Corrupted Samples
-This section removes samples known to have corrupted or missing images. The indices of such samples are read from predefined text files, and the corresponding rows are dropped from each dataset. This ensures that all remaining samples can be safely loaded and processed during training and evaluation.
+This section removes samples known to have corrupted images. The indices of such samples are read from predefined text files, and the corresponding rows are dropped from each dataset. This ensures that all remaining samples can be safely loaded and processed during training and evaluation.
 
 ## Image Dataset Definition
 This section defines a custom PyTorch `Dataset` class that loads images and labels from disk based on the CSV metadata. Each item returns a single image tensor and its associated binary label. Image loading is handled with PIL, and optional transformations are applied to standardize input size and normalization.
