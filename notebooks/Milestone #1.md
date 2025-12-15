@@ -49,3 +49,19 @@ These checks also simplify downstream processing by guaranteeing that every rema
 This section standardizes column data types to ensure consistency across the dataset and avoid downstream errors. Text-based fields are explicitly cast as strings, while Unix timestamps are converted into datetime objects to enable temporal analysis.
 
 By enforcing consistent data types across all splits, this step ensures that subsequent preprocessing, feature engineering, and modeling steps can operate reliably without additional type handling.
+
+## Sampling Dataset
+Because images in the Fakeddit dataset are provided as **URLs rather than raw image files**, we crawled the internet to download the corresponding images for each sample. Since some image URLs were no longer accessible or failed to download, we intentionally sampled a larger number of examples per split to ensure sufficient usable data after crawling.
+
+After cleaning, we performed **dataset subsampling** to accommodate compute constraints and potential image retrieval failures. We initially sampled a larger subset from each split while preserving the original label distribution. Specifically, we used:
+- **50,000 samples** for training  
+- **50,000 samples** for validation  
+- **50,000 samples** for testing  
+
+The subsampling procedure was **stratified by the target label**, ensuring that class proportions remained consistent across all splits. This approach ensured that even if a portion of images failed to download, we still retained ample multimodal data for training and evaluation.
+
+## Crawl Web
+As mentioned above, since images in the Fakeddit dataset are provided as **URLs rather than raw image files**, we crawled the internet to download the corresponding images for each sample.
+
+## Save Cleaned Data
+Once the data was pre-processed and images were retrieved, the resulting CSVs were saved
