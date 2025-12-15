@@ -1,4 +1,4 @@
-# FND [Fake News Detection] CLIP Model Analysis
+# Milestone 4: FND CLIP Model with Modality Attention - Analysis
 
 ## Environment Setup
 This section initializes the runtime configuration for the analysis pipeline. It sets file paths, establishes reproducibility settings, and selects the appropriate computation device depending on the execution environment. The setup ensures that subsequent analysis runs consistently across systems.
