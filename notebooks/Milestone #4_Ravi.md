@@ -1,4 +1,4 @@
-# Milestone 4: Train Fake News Detection CLIP Model
+# Milestone 4: FND CLIP Model with Modality Attention - Training + Evaluation
 
 ## Environment Setup
 This section establishes the runtime configuration for training a multimodal fake news detection model using text and images. It defines file paths for the cleaned datasets, sets a fixed random seed for reproducibility, and determines the appropriate computation device depending on whether the code is running in Google Colab or on a local machine (CPU, CUDA, or Apple MPS).
