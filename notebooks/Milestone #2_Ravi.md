@@ -1,4 +1,4 @@
-# Milestone #2: Ravi Raghavan
+# Milestone 2: BERT Fine-tuning
 
 ## Milestone Aim
 
