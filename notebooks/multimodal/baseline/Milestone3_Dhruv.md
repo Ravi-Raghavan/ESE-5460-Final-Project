@@ -7,7 +7,7 @@ This section loads the training, validation, and test CSV files containing Reddi
 A new `image_num` column is created by zero-padding the DataFrame indices. This establishes a consistent mapping between each textual sample and its corresponding image file on disk, enabling reliable multimodal pairing during dataset construction.
 
 ## Filtering Corrupted Samples
-This section removes samples with corrupted or missing images by reading index lists from predefined text files stored on Google Drive. Rows corresponding to these indices are dropped from each split, ensuring that all remaining samples can be safely loaded during training and evaluation.
+This section removes samples with corrupted images by reading index lists from predefined text files stored on Google Drive. Rows corresponding to these indices are dropped from each split, ensuring that all remaining samples can be safely loaded during training and evaluation.
 
 ## Multimodal Dataset Definition
 A custom PyTorch `Dataset` class is defined to return triplets of text, image, and label. Text is passed as raw strings for later tokenization, while images are loaded from disk using PIL and converted to tensors with optional transformations. This design supports joint text–image modeling.
