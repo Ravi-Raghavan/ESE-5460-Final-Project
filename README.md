@@ -109,8 +109,11 @@ Before developing our main CLIP-based models, we began by implementing several b
 - Source Jupyter Notebook: [`Milestone2_Dhruv.ipynb`](notebooks/unimodal/images/Milestone2_Dhruv.ipynb)
 
 ### 3. Multimodal Baseline
-- Concatenation of BERT text embeddings and ResNet image features
-- Joint classifier trained end-to-end
+- Combined **text embeddings from BERT** and **image features from ResNet-101** by simple **concatenation**, effectively representing both modalities for each Reddit post.  
+- Added a **joint classification head** on top of the concatenated features and trained the model **end-to-end**, allowing gradients to update both the text and image encoders (when fine-tuning).  
+- This baseline provides a reference for evaluating how much **multimodal fusion** improves performance compared to unimodal models.
+- Source Jupyter Notebook: [`Milestone3_Dhruv.ipynb`](notebooks/multimodal/baseline/Milestone3_Dhruv.ipynb)
+
 
 ### 4. CLIP-Guided Multimodal Model
 - CLIP-based joint text–image representations
