@@ -1,6 +1,6 @@
 # Multimodal Misinformation Detection on Social Media [Project ID: 63]
 
-**ESE 5460: Principles of Deep Learning — Final Project**
+**ESE 5460: Principles of Deep Learning**
 
 This repository contains our implementation of multimodal misinformation detection models that jointly analyze text and images from social media posts. We evaluate unimodal and multimodal baselines on the **Fakeddit** dataset and explore **CLIP-guided multimodal fusion** to improve fake news detection performance.
 
