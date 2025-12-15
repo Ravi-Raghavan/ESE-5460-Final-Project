@@ -19,8 +19,6 @@ cleaned_data/
 └── validation_5k.csv
 ```
 
-
-
 ## Environment Setup
 This section configures the experimental environment for fine-tuning and evaluating a BERT-based text classification model. It defines file paths for the cleaned training, validation, and test datasets, sets a fixed random seed for reproducibility, and determines the appropriate computation device depending on whether the script is running in Google Colab or on a local machine (CPU, CUDA, or Apple MPS).
 
@@ -29,7 +27,7 @@ The setup also explicitly disables TensorFlow usage to avoid backend conflicts a
 ## Load Data
 This section loads the cleaned CSV datasets for training, validation, and testing into pandas DataFrames. These datasets contain Reddit post titles and corresponding binary labels for fake news classification.
 
-In addition, the code removes rows corresponding to known corrupted indices using precomputed text files. This ensures that all remaining samples are valid and prevents tokenization or training errors caused by malformed data. The result is a clean and reliable dataset for downstream modeling.
+In addition, the code removes rows corresponding to known corrupted indices using precomputed text files. This ensures that all remaining samples are valid data samples. The result is a clean and reliable dataset for downstream modeling.
 
 ## Compute Class Proportions
 This section computes the proportion of each class in the training dataset for the binary classification task. Specifically, it calculates the fraction of samples labeled as fake news versus non-fake news.
@@ -76,6 +74,10 @@ This section configures the training process by specifying hyperparameters such 
 
 The customized Trainer is then initialized with the model, datasets, training arguments, and metric computation function. This setup defines the full fine-tuning pipeline.
 
+## Fine-Tune Pretrained Model by Freezing BERT and Updating the Classifier
+
+In this step, we leverage a pretrained BERT model for feature extraction while keeping its weights frozen. Only the final fully connected (FC) classification layer is updated during training.
+
 ## Evaluate Pretrained Model
 This section evaluates the pretrained (non–fine-tuned) BERT model on the training, validation, and test datasets. Evaluation metrics are computed using the previously defined functions.
 
@@ -90,4 +92,3 @@ After training completes, the final model weights and trainer state are saved fo
 This final section evaluates the fine-tuned BERT model on the training, validation, and test datasets using the same evaluation procedure as before.
 
 The resulting metrics are saved to CSV files, enabling direct comparison between the pretrained baseline and the fine-tuned model to assess the impact of task-specific training.
-
