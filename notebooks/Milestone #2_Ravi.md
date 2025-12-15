@@ -1,3 +1,25 @@
+# Milestone #2: Ravi Raghavan
+
+## Milestone Aim
+
+The goal is to use a **pretrained BERT-Base, Uncased** model and **fine-tune it on the r/Fakeeddit dataset**.
+
+This work presents evaluation results on:
+- Pretrained BERT
+- Fine-Tuned BERT
+
+## Script Sanity Check
+
+Please ensure your directory is structured as follows
+
+```text
+cleaned_data/
+├── test_5k.csv
+├── train.csv
+└── validation_5k.csv
+```
+
+
 
 ## Environment Setup
 This section configures the experimental environment for fine-tuning and evaluating a BERT-based text classification model. It defines file paths for the cleaned training, validation, and test datasets, sets a fixed random seed for reproducibility, and determines the appropriate computation device depending on whether the script is running in Google Colab or on a local machine (CPU, CUDA, or Apple MPS).
