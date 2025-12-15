@@ -1,4 +1,4 @@
-# Milestone #1: Data Preparation + Exploratory Data Analysis
+# Milestone 1: Data Preparation and Exploratory Data Analysis
 
 ## Dataset Access
 
