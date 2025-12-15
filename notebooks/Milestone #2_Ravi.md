@@ -1,4 +1,4 @@
-```markdown
+
 ## Environment Setup
 This section configures the experimental environment for fine-tuning and evaluating a BERT-based text classification model. It defines file paths for the cleaned training, validation, and test datasets, sets a fixed random seed for reproducibility, and determines the appropriate computation device depending on whether the script is running in Google Colab or on a local machine (CPU, CUDA, or Apple MPS).
 
@@ -68,4 +68,4 @@ After training completes, the final model weights and trainer state are saved fo
 This final section evaluates the fine-tuned BERT model on the training, validation, and test datasets using the same evaluation procedure as before.
 
 The resulting metrics are saved to CSV files, enabling direct comparison between the pretrained baseline and the fine-tuned model to assess the impact of task-specific training.
-```
+
