@@ -146,3 +146,7 @@ The above notebook contains the code to plot the QKV Attention Heatmaps
 2. [`Milestone #4_Raafae_Analysis(2).ipynb`](notebooks/multimodal/CLIP/Milestone%20%234_Raafae_Analysis(2).ipynb)
 
 The above notebook contains the code to plot the training loss curves for the CLIP-based model w/QKV Attention
+
+## Python Files and Jupyter Notebooks
+
+**Note to Instructor:** For every Jupyter Notebook (`.ipynb`) mentioned above, an equivalent Python script (`.py`) with the same filename is available in the same directory. These Python files were generated directly from the corresponding notebooks using Google Colab.
