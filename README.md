@@ -149,7 +149,7 @@ The above notebook contains the code to plot the training loss curves for the CL
 
 ## Python Files and Jupyter Notebooks
 
-**Note to Instructor:** For every Jupyter Notebook (`.ipynb`) mentioned above, an equivalent Python script (`.py`) with the same filename is available in the same directory. These Python files were generated directly from the corresponding notebooks using Google Colab.
+**Note to Instructor:** For every Jupyter Notebook (`.ipynb`) mentioned above, an equivalent Python script (`.py`) with the same filename is available in the same directory and in the `code` folder. These Python files were generated directly from the corresponding notebooks using Google Colab.
 
 ## Instructions to Run Jupyter Notebooks/Python Scripts
 
@@ -168,3 +168,41 @@ Ensure that this Google Drive folder is accessible from your Colab session.
    drive.mount('/content/drive')
    ```
 3. Execute Colab Notebook
+
+
+## Repository Structure
+Here I will explain the overall repository structure and what each directory corresponds to
+
+```text
+ESE_5460_FINAL_PROJECT/
+├── cleaned_data/
+│ └── train.csv # Training Dataset (Size: 33324)
+│ └── validation.csv # Original Validation Dataset (Size: 33316)
+│ └── validation_5k.csv # Downsampled Validation Dataset (Size: 5000)
+│ └── test.csv # Original Validation Dataset (Size: 33519)
+│ └── test_5k.csv # Downsampled Test Dataset (Size: 5000)
+│ └── train_corrupted_filenames.txt # Image files that are corrupted from train
+│ └── train_corrupted_indices.txt # Indices in dataframe of corrupted image files from train
+│ └── validation_corrupted_filenames.txt # Image files that are corrupted from Validation
+│ └── validation_corrupted_indices.txt # Indices in dataframe of corrupted image files from Validation
+│ └── validation_5k_corrupted_filenames.txt # Image files that are corrupted from Validation in downsampled dataset
+│ └── validation_5k_corrupted_indices.txt # Indices in dataframe of corrupted image files from Validation in downsampled dataset
+│ └── test_corrupted_filenames.txt # Image files that are corrupted from Test
+│ └── test_corrupted_indices.txt # Indices in dataframe of corrupted image files from Test
+│ └── test_5k_corrupted_filenames.txt # Image files that are corrupted from Test in downsampled dataset
+│ └── test_5k_corrupted_indices.txt # Indices in dataframe of corrupted image files from Test in downsampled dataset
+├── code/ # Contains Python Files of the Jupyter Notebooks mentioned. The names are corresponding
+├── data/
+│ └── multimodal_train.tsv # Original Fakeeddit Training Dataset for Multimodal Data Samples
+│ └── multimodal_validate.tsv # Original Fakeeddit Validation Dataset for Multimodal Data Samples
+│ └── multimodal_test_public.tsv # Original Fakeeddit Test Dataset for Multimodal Data Samples
+├── images/ # Contains all Images used in Report
+├── metrics/ # Contains Evaluation metrics from Model Training Runs
+├── notebooks/ # Contains Jupyter Notebooks
+├── output/ # Generated outputs (predictions, logs, etc.)
+├── test/
+│ └── test_notebook.ipynb # Notebook for testing/evaluation
+├── test_images/ # Test image data
+├── train_images/ # Training image data
+├── validation_images/ # Validation image data
+```
