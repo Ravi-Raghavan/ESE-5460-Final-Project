@@ -1,4 +1,4 @@
-# Milestone 2 – Image-Only Fake News Detection with ResNet101
+# Milestone 2: Image-Only Fake News Detection with ResNet101
 
 ## Data Loading and Path Configuration
 This section defines file paths for the training, validation, and test CSV files and loads them into pandas DataFrames. The code is written to be portable across different machines by allowing path overrides depending on the execution environment. Each dataset contains labels and metadata corresponding to Reddit posts with associated images.
