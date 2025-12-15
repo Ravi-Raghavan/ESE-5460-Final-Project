@@ -10,29 +10,67 @@ This repository contains our implementation of multimodal misinformation detecti
 - Raafae Zaki (rzaki2@seas.upenn.edu)  
 
 ## Dataset
-We use the **Fakeddit** dataset, which provides labeled image–text pairs for fine-grained fake news classification.
+We use the **Fakeddit** dataset, a large-scale multimodal dataset collected from **Reddit**, designed for fine-grained fake news and misinformation classification.
 
-- Text: post titles and descriptions  
-- Images: associated social media images  
-- Labels: misinformation categories  
+- **Text**: The text associated with each Reddit post  
+- **Images**: Images attached to the corresponding Reddit post  
+- **Labels**: Fine-grained misinformation categories indicating the credibility and intent of the post
 
 > **Note to Instructor:** Dataset details follow the setup described in *r/Fakeddit: A New Multimodal Benchmark Dataset for Fine-grained Fake News Detection*
 
-> **Note to Instructor:** Due to size constraints, the dataset is not included in this repository.
+> **Note to Instructor:** Due to file size limitations, the dataset is not included in this repository. Instead, we provide the instructions below for accessing the data directly from the original Google Drive source.
 
-## Dataset Preprocessing
 Following the instructions from the [r/Fakeddit paper](https://arxiv.org/pdf/1911.03854), we obtained the dataset from the official [Fakeddit GitHub repository](https://github.com/entitize/fakeddit).  
 
 The repository provides a link to the dataset’s [Google Drive Folder](https://drive.google.com/drive/folders/1jU7qgDqU1je9Y0PMKJ_f31yXRo5uWGFm?usp=sharing)
 
 Since our project focuses on **multimodal analysis**, we use only the multimodal samples, which contain **both text and images**.
 
-Specifically, we downloaded the following files from the above Google Drive Link
-- `multimodal_train.tsv`  
-- `multimodal_validate.tsv`  
-- `multimodal_test_public.tsv`  
+Specifically, we downloaded the following files from the Google Drive link above and stored them locally in a folder named `data/`:
+- `multimodal_train.tsv`
+- `multimodal_validate.tsv`
+- `multimodal_test_public.tsv`
 
+Local File Structure
+```text
+data/
+├── multimodal_train.tsv
+├── multimodal_validate.tsv
+└── multimodal_test_public.tsv
+```
 
+## Data Preprocessing
+
+This section describes the preprocessing steps applied to the multimodal Fakeddit dataset prior to modeling and analysis.
+
+First, the training, validation, and test splits were loaded from TSV files into pandas DataFrames. Basic inspections (e.g., previews and summary statistics) were performed to verify successful loading, confirm schema consistency, and identify missing or malformed entries.
+
+Next, we performed **feature selection** to retain only columns relevant to multimodal misinformation detection. Identifier fields, redundant metadata, and features unlikely to contribute meaningful predictive signal were removed. We retained textual content, image-related fields, engagement and contextual metadata, and the target labels. The same feature subset was applied consistently across all dataset splits to ensure a uniform schema.
+
+We then applied **sanity checks** tailored to multimodal learning. Samples missing either textual content or image URLs were removed, ensuring that every example contained both modalities. Entries with missing or invalid labels were also discarded to maintain valid supervision. After filtering, indices were reset to keep the DataFrames clean and contiguous.
+
+We then **converted data types** to ensure consistency across the dataset and avoid downstream errors. Text-based fields were explicitly cast to strings, while Unix timestamps were converted into datetime objects to enable temporal analysis. Enforcing consistent data types across all splits ensures that subsequent preprocessing, feature engineering, and modeling steps can operate reliably without additional type handling.
+
+Because images in the Fakeddit dataset are provided as **URLs rather than raw image files**, we crawled the internet to download the corresponding images for each sample. Since some image URLs were no longer accessible or failed to download, we intentionally sampled a larger number of examples per split to ensure sufficient usable data after crawling.
+
+After cleaning, we performed **dataset subsampling** to accommodate compute constraints and potential image retrieval failures. We initially sampled a larger subset from each split while preserving the original label distribution. Specifically, we used:
+- **50,000 samples** for training  
+- **50,000 samples** for validation  
+- **50,000 samples** for testing  
+
+The subsampling procedure was **stratified by the target label**, ensuring that class proportions remained consistent across all splits. This approach ensured that even if a portion of images failed to download, we still retained ample multimodal data for training and evaluation.
+
+Together, these preprocessing steps produce a clean, consistent, and fully multimodal dataset suitable for reproducible experimentation.
+
+Source Code Reference: The code for data preprocessing was implemented in the following Jupyter Notebook
+- [`Milestone #1.ipynb`](notebooks/Milestone%20%231.ipynb)
+
+After crawling the internet for the images and removing samples where image retrieval failed, the final dataset sizes for each split were as follows: 
+- Train: 33324
+- Validation: 33316
+- Test: 33519
+
+These final splits maintain the original label distributions and ensure that every example contains both textual and visual modalities. The resulting dataset is clean, consistent, and fully multimodal, providing a robust foundation for downstream modeling and experimentation.
 
 ## Models Implemented
 
