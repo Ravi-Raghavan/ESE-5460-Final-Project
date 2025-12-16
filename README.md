@@ -135,21 +135,11 @@ To better understand the behavior and performance of our CLIP-based models, we p
 
 These analyses helped us interpret model behavior, identify strengths and limitations of each attention mechanism, and provide qualitative evidence for the effectiveness of CLIP-guided multimodal fusion in misinformation detection.
 
-- Source Jupyter Notebook (contains all analysis plots for CLIP-Model w/ Modality-Wise Attention): [`Milestone #4_Ravi_Analysis.ipynb`](notebooks/multimodal/CLIP/Milestone%20%234_Ravi_Analysis.ipynb)
-
-- Source Jupyter Notebook (contains all analysis plots for CLIP-Model w/ QKV Attention): 
-
-1. [`Milestone #4_Raafae_Analysis.ipynb`](notebooks/multimodal/CLIP/Milestone_4_Raafae_Analysis.ipynb)
-
-The above notebook contains the code to plot the QKV Attention Heatmaps
-
-2. [`Milestone #4_Raafae_Analysis(2).ipynb`](notebooks/multimodal/CLIP/Milestone%20%234_Raafae_Analysis(2).ipynb)
-
-The above notebook contains the code to plot the training loss curves for the CLIP-based model w/QKV Attention
+- Source Jupyter Notebook (contains all analysis plots for all CLIP-based Models): [`CLIP_Models_Analysis.ipynb`](notebooks/multimodal/CLIP/CLIP_Models_Analysis.ipynb)
 
 ## Python Files and Jupyter Notebooks
 
-**Note to Instructor:** For every Jupyter Notebook (`.ipynb`) mentioned above, an equivalent Python script (`.py`) with the same filename is available in the same directory and in the `code` folder. These Python files were generated directly from the corresponding notebooks using Google Colab.
+**Note to Instructor:** For every Jupyter Notebook (`.ipynb`) mentioned above, an equivalent Python script (`.py`) with the same filename is available in the same directory and in the `code` folder. These Python files were generated directly from the corresponding notebooks using Google Colab. Furthermore, we note that every Jupyter Notebook also has a corresponding Markdown (`.md`) file describing the contents of that notebook
 
 ## Instructions to Run Jupyter Notebooks/Python Scripts
 
