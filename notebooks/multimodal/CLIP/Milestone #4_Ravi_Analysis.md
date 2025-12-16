@@ -21,7 +21,7 @@ The model is moved to the appropriate device and used strictly in inference mode
 ## Analyze Cosine Similarities
 This section computes cosine similarity scores between CLIP text embeddings and CLIP image embeddings across the training dataset. For each batch, text and image features are extracted independently and compared to quantify cross-modal alignment.
 
-The resulting similarity scores are accumulated and saved for later analysis. These values provide insight into how strongly text and images agree semantically before any task-specific fine-tuning.
+The resulting similarity scores are accumulated and saved for later analysis. These values provide insight into how strongly text and images agree semantically before any model development is done.
 
 ## Plot Cosine Similarities
 This section visualizes the distribution of cosine similarity values before and after standardization. The similarities are normalized using their empirical mean and variance and passed through a sigmoid function to examine how weighting functions respond to raw versus standardized inputs.
@@ -54,6 +54,6 @@ This section focuses on correctly classified samples where image attention domin
 Each example is visualized with its image, caption, predicted and true labels, and a modality attention heatmap to illustrate how the model prioritizes visual information.
 
 ## Case 3: Multimodal Features are Needed
-This section examines samples where neither text nor image alone dominates, and the multimodal representation receives the highest attention. These cases indicate that joint reasoning over text and image is necessary for correct classification.
+This section examines samples where neither text nor image alone dominates, and the multimodal representation is strongly present. These cases indicate that joint reasoning over text and image is necessary for correct classification.
 
 Visualizations combine the image, caption, prediction metadata, and modality attention heatmaps, showcasing how the model leverages cross-modal interactions to resolve ambiguous or complex examples.
