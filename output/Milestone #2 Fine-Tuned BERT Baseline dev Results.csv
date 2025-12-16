@@ -1,2 +1,2 @@
-dev_loss,dev_model_preparation_time,dev_accuracy,dev_pos_precision,dev_pos_recall,dev_pos_f1,dev_neg_precision,dev_neg_recall,dev_neg_f1,dev_f1_macro,dev_f1_micro,dev_f1_weighted,dev_runtime,dev_samples_per_second,dev_steps_per_second,epoch
-0.5818883180618286,0.001,0.8393357342937174,0.8452631578947368,0.869361241429087,0.8571428571428571,0.8314711359404097,0.8019757521329143,0.8164571428571429,0.8368,0.8393357342937174,0.8390141885325558,68.4452,73.022,2.294,3.0
+dev_loss,dev_accuracy,dev_pos_precision,dev_pos_recall,dev_pos_f1,dev_neg_precision,dev_neg_recall,dev_neg_f1,dev_f1_macro,dev_f1_micro,dev_f1_weighted,dev_runtime,dev_samples_per_second,dev_steps_per_second,epoch
+0.57063227891922,0.8379351740696278,0.8436733263231686,0.8686394803320101,0.8559743954480796,0.8303030303030303,0.7997305792546026,0.8147301006404392,0.8353522480442594,0.8379351740696278,0.8375968355167841,145.5913,34.329,1.078,3.0
