@@ -195,4 +195,5 @@ ESE_5460_FINAL_PROJECT/
 ├── test_images/ # Test image data
 ├── train_images/ # Training image data
 ├── validation_images/ # Validation image data
+├── report/ # Contains PDF of our Report
 ```
